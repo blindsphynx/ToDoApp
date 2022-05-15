@@ -7,7 +7,7 @@ class NotesController {
     var listOfNotes: MutableList<Note> = mutableListOf<Note>()
 
     init {
-        val response = File(this.javaClass.classLoader.getResource("database.json").path).readText()
+        val response = this.javaClass.classLoader.getResource("database.json")?.readText()
         if (response != null) {
             val jsonObject = JSONTokener(response).nextValue() as JSONObject
             val jsonArray = jsonObject.getJSONArray("note")
@@ -39,6 +39,7 @@ class NotesController {
             listOfNotes.last().uid + 1
         }
         listOfNotes.add(Note(uid, date, text, false))
+        save()
     }
 
     fun deleteNote(id: Int) {
@@ -49,6 +50,7 @@ class NotesController {
                 }
             }
         }
+        save()
     }
 
     fun editText(id: Int, newText: String) {
@@ -59,6 +61,7 @@ class NotesController {
                 }
             }
         }
+        save()
     }
 
     fun editStatus(id: Int, newStatus: Boolean) {
@@ -69,10 +72,16 @@ class NotesController {
                 }
             }
         }
+        save()
     }
 
-    fun save() {
-        TODO()
+    private fun save() {
+        val filepath = this.javaClass.classLoader.getResource("database.json")?.path
+        if (filepath != null) {
+            File(filepath).writeText(this.toString())
+        } else {
+            println("File not found")
+        }
     }
 
     override fun toString(): String {
