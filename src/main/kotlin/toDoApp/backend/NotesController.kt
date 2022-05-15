@@ -49,8 +49,8 @@ class NotesController {
                     listOfNotes.remove(note)
                 }
             }
+            save()
         }
-        save()
     }
 
     fun editText(id: Int, newText: String) {
@@ -60,8 +60,8 @@ class NotesController {
                     note.text = newText
                 }
             }
+            save()
         }
-        save()
     }
 
     fun editStatus(id: Int, newStatus: Boolean) {
@@ -71,8 +71,8 @@ class NotesController {
                     note.status = newStatus
                 }
             }
+            save()
         }
-        save()
     }
 
     private fun save() {
