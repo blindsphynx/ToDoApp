@@ -1,0 +1,15 @@
+{
+  "note": [
+    {
+      "uid": 1,
+      "datestamp": "21-09-2019",
+      "text": "хехе",
+      "status": true
+    },
+    {
+      "uid": 2,
+      "datestamp": "29-10-2020",
+      "text": "хаха",
+      "status": false
+    }]
+}
